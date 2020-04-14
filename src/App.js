@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Presentation, PresenterModePlugin, Slide } from "react-presents";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// Automatically load all slides in the Slides folder
+const slides = require
+  .context("./Slides/", false, /\.js$/)
+  .keys()
+  .map((filename) => filename.replace("./", ""))
+  .map((filename) => require(`./Slides/${filename}`).default);
 
-export default App;
+// Support navigating to any slides also tagged with a :title
+const options = slides
+  .map((slide, index) => ({
+    label: slide.title,
+    value: index,
+  }))
+  .filter((option) => option.label);
+
+export default () => (
+  <Presentation>
+    <PresenterModePlugin />
+
+    {slides.map((Component, index) => (
+      <Slide component={Component} key={index} />
+    ))}
+  </Presentation>
+);
