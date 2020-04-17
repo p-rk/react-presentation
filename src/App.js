@@ -9,14 +9,6 @@ const slides = require
   .map((filename) => filename.replace("./", ""))
   .map((filename) => require(`./Slides/${filename}`).default);
 
-// Support navigating to any slides also tagged with a :title
-const options = slides
-  .map((slide, index) => ({
-    label: slide.title,
-    value: index,
-  }))
-  .filter((option) => option.label);
-
 export default () => (
   <Presentation>
     <PresenterModePlugin />

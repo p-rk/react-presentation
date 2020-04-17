@@ -6,15 +6,17 @@ const virtualDOMImg = require("../images/virtual-dom.png");
 const slide = () => (
   <div style={{ padding: "8rem" }}>
     <ContentSlide>
-      <Step index={1}>
+      <>
         <h1>What is the Virtual DOM?</h1>
-        <div>
-          The virtual DOM (VDOM) is a programming concept where an ideal, or
-          “virtual”, representation of a UI is kept in memory and synced with
-          the “real” DOM by a library such as ReactDOM. This process is called
-          <b> reconciliation</b>
-        </div>
-      </Step>
+        <Step index={1}>
+          <div>
+            The virtual DOM (VDOM) is a programming concept where an ideal, or
+            “virtual”, representation of a UI is kept in memory and synced with
+            the “real” DOM by a library such as ReactDOM. This process is called
+            <b> reconciliation</b>
+          </div>
+        </Step>
+      </>
       <br />
       <Step index={2}>
         <img height="50%" width="50%" src={virtualDOMImg} alt="dom" />
